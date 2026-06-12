@@ -7,10 +7,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build
         run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          find . -name "gradlew" -exec chmod +x {} \;
+          ./$(find . -name "gradlew") assembleDebug
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: **/build/outputs/apk/debug/app-debug.apk

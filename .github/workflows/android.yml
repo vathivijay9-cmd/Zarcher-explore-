@@ -5,6 +5,9 @@ on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
     steps:
       - uses: actions/checkout@v4
       - name: set up JDK
@@ -13,7 +16,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Make gradlew executable
-        run: chmod +x ./gradlew
+        run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew assembleDebug
       - name: Upload APK

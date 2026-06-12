@@ -1,23 +1,16 @@
 name: Android Build
-
 on: [push, workflow_dispatch]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Build with Gradle
+      - name: Build
         run: |
-          # Find the folder containing gradlew and move into it
-          PROJECT_DIR=$(find . -name "gradlew" -exec dirname {} \; | head -n 1)
-          cd "$PROJECT_DIR"
           chmod +x gradlew
           ./gradlew assembleDebug
-          
-      - name: Upload APK
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: **/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk

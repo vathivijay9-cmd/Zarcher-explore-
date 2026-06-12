@@ -1,0 +1,6 @@
+{
+  "name": "RootZ Explorer",
+  "description": "Root & Archive File Explorer with root access and zip management, without debugging setup.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

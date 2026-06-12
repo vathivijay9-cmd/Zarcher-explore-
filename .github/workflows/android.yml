@@ -5,11 +5,14 @@ on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: .
     steps:
       - uses: actions/checkout@v4
+      - name: List files to find gradlew
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files in current directory:"
+          ls -R
       - name: set up JDK
         uses: actions/setup-java@v4
         with:

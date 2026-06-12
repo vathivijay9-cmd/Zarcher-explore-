@@ -7,13 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Build with Gradle
         run: |
-          # This command searches for gradlew in all folders
-          DIR=$(find . -name "gradlew" -printf "%h" | head -n 1)
-          cd "$DIR"
+          # Find the folder containing gradlew and move into it
+          PROJECT_DIR=$(find . -name "gradlew" -exec dirname {} \; | head -n 1)
+          cd "$PROJECT_DIR"
           chmod +x gradlew
           ./gradlew assembleDebug
+          
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
